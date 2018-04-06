@@ -1,9 +1,12 @@
 {
   "name": "ES6",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-  	"start": "nodemon ."
+    "start": "nodemon ."
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }
