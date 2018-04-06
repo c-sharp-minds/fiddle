@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-  	"start": "nodemon ."
+    "start": "nodemon ."
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }
