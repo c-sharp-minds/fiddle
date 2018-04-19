@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ."
+    "start": "lite-server",
+    "nodemon": "nodemon ."
   },
   "devDependencies": {
+    "lite-server": "^2.3.0",
     "nodemon": "^1.17.3"
   }
 }
