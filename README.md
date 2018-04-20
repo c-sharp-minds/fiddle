@@ -5,10 +5,14 @@ This is a simple project, used as a local and raw [jsFiddle](https://jsfiddle.ne
 ## Usage
 
 ```shell
-// To get things going the first time
-// For now yarn only installs nodemon to run a livereload server locally
+# To get things going the first time:
+# This installs nodemon and lite-server to run a livereload server locally
 $ yarn
 
-// To really get things going
+# To really get things going:
+# This starts a lite-server that allows you to do simple JavaScript, HTML and CSS stuff.
 $ yarn start
+
+# If you just want to test some javascript stuff in the console/terminal:
+$ yarn run nodemon
 ```

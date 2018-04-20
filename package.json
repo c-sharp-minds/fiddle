@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prestart": "yarn",
     "start": "lite-server",
+    "prenodemon": "yarn",
     "nodemon": "nodemon ."
   },
   "devDependencies": {
