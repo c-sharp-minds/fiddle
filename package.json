@@ -12,17 +12,14 @@
     "nodemon": "nodemon ."
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "css-loader": "^0.28.11",
     "lite-server": "^2.3.0",
     "nodemon": "^1.17.3",
     "rxjs": "^6.2.1",
+    "style-loader": "^0.21.0",
     "webpack": "^4.12.2",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
-  "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0"
-  }
+  "dependencies": {}
 }
