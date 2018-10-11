@@ -1,0 +1,10 @@
+{
+  "extends": ["google"],
+  "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "rules": {
+    "max-len": [1, 140, 2, {"ignoreComments": true}]
+  }
+}
