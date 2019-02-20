@@ -6,14 +6,14 @@ This is a simple project, used as a local and raw [jsFiddle](https://jsfiddle.ne
 
 ```shell
 # To get things going the first time:
-# This installs nodemon and lite-server to run a livereload server locally
 $ yarn
 
 # To really get things going:
-# This starts a lite-server that allows you to do simple JavaScript, HTML and CSS stuff.
+# This starts a webpack-dev-server that allows you to do simple JavaScript, HTML and CSS stuff with livereload.
 $ yarn start
 
 # If you just want to test some javascript stuff in the console/terminal:
+# Do note that nodemon will stumble when importing css and using `document` etc.
 $ yarn run nodemon
 
 # To run livereload with webpack:

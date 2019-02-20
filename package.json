@@ -9,7 +9,7 @@
     "prestart": "yarn",
     "start": "webpack-dev-server --open",
     "prenodemon": "yarn",
-    "nodemon": "nodemon ."
+    "nodemon": "nodemon ./src/"
   },
   "devDependencies": {
     "css-loader": "^0.28.11",
