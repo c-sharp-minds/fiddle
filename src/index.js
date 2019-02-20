@@ -25,7 +25,7 @@ const decodedCookie = decodeURIComponent(document.cookie).split(';').reduce(
       [splitC[0]]: splitC[1],
     });
   },
-    {}
+  {}
 );
 
 console.table(decodedCookie);

@@ -5,6 +5,7 @@
       "sourceType": "module"
   },
   "rules": {
-    "max-len": [1, 140, 2, {"ignoreComments": true}]
+    "max-len": [1, 140, 2, {"ignoreComments": true}],
+    "indent": ["warn", 2]
   }
 }
