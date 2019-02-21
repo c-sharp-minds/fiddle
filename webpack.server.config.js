@@ -1,6 +1,7 @@
 const path = require('path');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const DelWebpackPlugin = require('del-webpack-plugin');
 
 module.exports = {
   target: 'node', // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
@@ -38,5 +39,11 @@ module.exports = {
     new CopyPlugin([
       {from: 'resources', to: 'resources'},
     ]),
+    new DelWebpackPlugin({
+      include: ['dist/*'],
+      info: true,
+      keepGeneratedAssets: true,
+      allowExternal: false,
+    }),
   ],
 };
