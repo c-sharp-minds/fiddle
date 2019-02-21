@@ -40,7 +40,7 @@ module.exports = {
       {from: 'resources', to: 'resources'},
     ]),
     new DelWebpackPlugin({
-      include: ['**'],
+      include: ['**.*'],
       info: true,
       keepGeneratedAssets: true,
       allowExternal: false,
