@@ -1,8 +1,9 @@
 const path = require('path');
+const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
-  target: 'web', // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
-  entry: './src/index.js',
+  target: 'node', // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
+  entry: './src/server.js',
   mode: 'development',
   output: {
     filename: 'main.js',
@@ -31,4 +32,5 @@ module.exports = {
   node: {
     fs: 'empty',
   },
+  plugins: [new NodemonPlugin()],
 };
