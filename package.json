@@ -1,15 +1,14 @@
 {
   "name": "fiddle",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack --config webpack.server.config.js",
+    "prewatch": "yarn",
+    "watch": "webpack --config webpack.server.config.js --watch",
     "prestart": "yarn",
-    "start": "webpack-dev-server --open",
-    "prenodemon": "yarn",
-    "nodemon": "nodemon ./src/"
+    "start": "webpack-dev-server --open --config webpack.config.js"
   },
   "devDependencies": {
     "css-loader": "2.1.0",
@@ -19,11 +18,13 @@
     "html-loader": "0.5.5",
     "lite-server": "2.4.0",
     "nodemon": "1.18.10",
+    "nodemon-webpack-plugin": "4.0.7",
     "rxjs": "6.4.0",
     "style-loader": "0.23.1",
     "webpack": "4.29.5",
     "webpack-cli": "3.2.3",
-    "webpack-dev-server": "3.1.14"
+    "webpack-dev-server": "3.1.14",
+    "xmlhttprequest": "1.8.0"
   },
   "dependencies": {}
 }
