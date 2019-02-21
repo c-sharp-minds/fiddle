@@ -5,23 +5,17 @@
  */
 
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+import fs from 'fs';
 
-/** Using rxjs is possible */
-import {ajax} from 'rxjs/ajax';
-import {map, catchError} from 'rxjs/operators';
-
-// It needs to be available globally, before RxJS is loaded
 // import {of, fromEvent} from 'rxjs';
 // import {map, filter, debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
-const testApi = () => {
-  const obs$ = ajax.getJSON(`https://api.github.com/users?per_page=5`)
-    .pipe(
-      map((userResponse) => console.log('Users: ', userResponse)),
-      catchError((error) => console.log('error: ', error))
-    );
 
-  obs$.subscribe();
+const testReadPizza = () => {
+  const testFolder = `resources/pizza/a_example.in`;
+
+  const test = fs.readFileSync(testFolder);
+  console.log('test: ', test);
 };
 
-testApi();
+testReadPizza();
