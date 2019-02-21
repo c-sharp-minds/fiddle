@@ -39,7 +39,7 @@ module.exports = {
       {from: 'src/index.html', to: 'index.html'},
     ]),
     new DelWebpackPlugin({
-      include: ['dist/*'],
+      include: ['**'],
       info: true,
       keepGeneratedAssets: true,
       allowExternal: false,
