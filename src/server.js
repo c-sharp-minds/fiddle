@@ -12,10 +12,20 @@ import fs from 'fs';
 
 
 const testReadPizza = () => {
-  const testFolder = `resources/pizza/a_example.in`;
+  const testFolder = `resources/pizza/b_small.in`;
 
   const test = fs.readFileSync(testFolder);
-  console.log('test: ', test);
+
+  const lines = test.toString().split('\n');
+  const [R, C, L, H] = lines[0].split(' ');
+  console.log('Rows: ', R);
+  console.log('Columns: ', C);
+  console.log('Minimum ingredients on each slice: ', L);
+  console.log('Maximum amount of cells in a slice: ', H);
+
+  // for (i = 1; i < lines.length; i++) {
+  //   lines[i].split('');
+  // }
 };
 
 testReadPizza();
