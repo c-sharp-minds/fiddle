@@ -59,16 +59,16 @@ function parseAllPizzas(pizzas, location) {
  */
 function logPizzaInfo(pizza, number) {
   console.group('Pizza nr.', number);
-  console.log('\t Rows: \t\t\t\t\t', pizza.rows);
-  console.log('\t Columns: \t\t\t\t', pizza.columns);
-  console.log('\t Minimum ingredients on each slice: \t', pizza.minIngredients);
-  console.log('\t Maximum amount of cells in a slice: \t', pizza.maxSliceCells);
+  console.log('\t Size: \t\t\t\t\t', pizza.size);
+  console.log('\t R Rows: \t\t\t\t', pizza.rows);
+  console.log('\t C Columns: \t\t\t\t', pizza.columns);
+  console.log('\t L Minimum ingredients on each slice: \t', pizza.minIngredients);
+  console.log('\t H Maximum amount of cells in a slice: \t', pizza.maxSliceCells);
   console.log('');
   console.groupEnd();
 }
 
 const pizzaLocation = 'resources/pizza';
-
 const pizzaFiles = findAllPizzas(pizzaLocation);
 const pizzas = parseAllPizzas(pizzaFiles, pizzaLocation);
 

@@ -20,4 +20,12 @@ export class Pizza {
     this.maxSliceCells = maxSliceCells;
     this.toppings = toppings;
   }
+
+  /**
+   * Calculates the size of the pizza, based on its rows and columns
+   */
+  get size() {
+    if (!this.rows || !this.columns) return;
+    return this.rows * this.columns;
+  }
 }
