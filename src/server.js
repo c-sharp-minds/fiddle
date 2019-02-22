@@ -9,9 +9,8 @@ import {findAllPizzas, parseAllPizzas, logPizzaInfo} from './pizza';
 
 const pizzaLocation = 'resources/pizza';
 const pizzaFiles = findAllPizzas(pizzaLocation);
-const pizzas = parseAllPizzas([pizzaFiles[0]], pizzaLocation);
+const pizzas = parseAllPizzas(pizzaFiles, pizzaLocation);
 
 pizzas.map((pizza, index) => {
   logPizzaInfo(pizza, index + 1);
-  console.log('pizzaaa: ', pizza);
 });

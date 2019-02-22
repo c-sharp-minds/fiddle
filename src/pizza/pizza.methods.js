@@ -61,5 +61,4 @@ export function logPizzaInfo(pizza, number) {
   console.log('\t # Mushrooms: \t\t\t\t', pizza.tomatoCount);
   console.log('');
   console.groupEnd();
-  console.table('\t Toppings: \t\t\t\t', pizza.toppings);
 }
