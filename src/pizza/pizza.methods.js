@@ -74,33 +74,34 @@ export function generatePizzaHtml(pizza, number) {
   if (!pizza) return;
   const tomato = (index) => `<div class="tomato tom${index}"></div>`;
   const mushroom = (index) => `<div class="mushroom mush${index}"></div>`;
-  const tomatoStyle = (index, row, offset) => `
-    .tom${index} {
+  const tomatoStyle = (index, row, offset, nr) => `
+    .pizza${nr} .tom${index} {
       position: absolute;
       top: ${(row * 100) + 50}px;
       left: ${((index - offset) * 100) + 50}px;
     }
   `;
-  const mushroomStyle = (index, row, offset) => `
-    .mush${index} {
+  const mushroomStyle = (index, row, offset, nr) => `
+    .pizza${nr} .mush${index} {
       position: absolute;
       top: ${(row * 100) + 50}px;
       left: ${((index - offset) * 100) + 50}px;
     }
   `;
-  const body = (rows, columns, topping, style) => `
+
+  const body = (rows, columns, topping, style, nr) => `
     <style>
-      .pizza {
+    .pizza${nr} {
         position: relative;
       }
 
-      .crust {
+      .pizza${nr} .crust {
         width: ${(columns * 100) + 100}px;
         height: ${(rows * 100) + 100}px;
         background: burlywood;
       }
 
-      .cheese {
+      .pizza${nr} .cheese {
         width: ${(columns * 100)}px;
         height: ${(rows * 100)}px;
         background: gold;
@@ -109,14 +110,14 @@ export function generatePizzaHtml(pizza, number) {
         left: 50px;
       }
 
-      .tomato {
+      .pizza${nr} .tomato {
         width: 90px;
         height: 90px;
         margin: 5px;
         background: firebrick;
         border-radius: 37.5px;
       }
-      .mushroom {
+      .pizza${nr} .mushroom {
         height: 40px;
         width: 90px;
         margin: 5px;
@@ -127,7 +128,8 @@ export function generatePizzaHtml(pizza, number) {
 
       ${style}
     </style>
-    <div class="pizza">
+    <h1>Pizza ${nr}</h1>
+    <div class="pizza${nr}">
       <div class="crust"></div>
       <div class="cheese"></div>
       ${topping}
@@ -147,12 +149,25 @@ export function generatePizzaHtml(pizza, number) {
   const toppingStyle = pizza.toppings.reduce(
     (style, row, i) => style += row.reduce(
       (s, ingredient, j) => s += ingredient === ToppingsEnum.tomato
-        ? tomatoStyle(i * row.length + j, i, i * row.length)
-        : mushroomStyle(i * row.length + j, i, i * row.length),
+        ? tomatoStyle(i * row.length + j, i, i * row.length, number)
+        : mushroomStyle(i * row.length + j, i, i * row.length, number),
       ''
     ),
     ''
   );
 
-  return body(pizza.rows, pizza.columns, toppingMarkup, toppingStyle);
+  return body(pizza.rows, pizza.columns, toppingMarkup, toppingStyle, number);
+}
+
+/**
+ * Write content to a specified file location
+ * @export
+ * @param {string} content The content to write in the file
+ * @param {string} location The location and name of the file
+ */
+export function writeFile(content, location) {
+  if (!location) return;
+  /* The fs.createWriteStream() returns an (WritableStream {aka} internal.Writeable) and we want the encoding as 'utf'-8 */
+  /* The WriteableStream has the method write() */
+  fs.createWriteStream(location, 'utf-8').write(content);
 }
