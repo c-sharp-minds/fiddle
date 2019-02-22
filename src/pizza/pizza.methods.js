@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {Pizza} from './pizza.js';
+import {Pizza, ToppingsEnum} from './pizza.js';
 
 /**
  * Read the file and splitit into readable rows
@@ -48,7 +48,7 @@ export function parseAllPizzas(pizzas, location) {
 /**
  * Log the information of a pizza
  * @param {Pizza} pizza The pizza to output the information about
- * @param {number} number The number of the current
+ * @param {number} number The number of the current pizza
  */
 export function logPizzaInfo(pizza, number) {
   console.group('Pizza nr.', number);
@@ -61,4 +61,98 @@ export function logPizzaInfo(pizza, number) {
   console.log('\t # Mushrooms: \t\t\t\t', pizza.tomatoCount);
   console.log('');
   console.groupEnd();
+}
+
+/**
+ * Generate html to visualize the pizza
+ * @export
+ * @param {Pizza} pizza The pizza visualize
+ * @param {number} number The number of the current pizza
+ * @return {string} The html for the pizza
+ */
+export function generatePizzaHtml(pizza, number) {
+  if (!pizza) return;
+  const tomato = (index) => `<div class="tomato tom${index}"></div>`;
+  const mushroom = (index) => `<div class="mushroom mush${index}"></div>`;
+  const tomatoStyle = (index, row, offset) => `
+    .tom${index} {
+      position: absolute;
+      top: ${(row * 100) + 50}px;
+      left: ${((index - offset) * 100) + 50}px;
+    }
+  `;
+  const mushroomStyle = (index, row, offset) => `
+    .mush${index} {
+      position: absolute;
+      top: ${(row * 100) + 50}px;
+      left: ${((index - offset) * 100) + 50}px;
+    }
+  `;
+  const body = (rows, columns, topping, style) => `
+    <style>
+      .pizza {
+        position: relative;
+      }
+
+      .crust {
+        width: ${(columns * 100) + 100}px;
+        height: ${(rows * 100) + 100}px;
+        background: burlywood;
+      }
+
+      .cheese {
+        width: ${(columns * 100)}px;
+        height: ${(rows * 100)}px;
+        background: gold;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+      }
+
+      .tomato {
+        width: 90px;
+        height: 90px;
+        margin: 5px;
+        background: firebrick;
+        border-radius: 37.5px;
+      }
+      .mushroom {
+        height: 40px;
+        width: 90px;
+        margin: 5px;
+        margin-top: 20px;
+        border-radius: 90px 90px 0 0;
+        background:#b49989;
+      }
+
+      ${style}
+    </style>
+    <div class="pizza">
+      <div class="crust"></div>
+      <div class="cheese"></div>
+      ${topping}
+    </div>
+  `;
+
+  const toppingMarkup = pizza.toppings.reduce(
+    (markup, row, i) => markup += row.reduce(
+      (m, ingredient, j) => m += ingredient === ToppingsEnum.tomato
+        ? tomato(i * row.length + j)
+        : mushroom(i * row.length + j),
+      ''
+    ),
+    ''
+  );
+
+  const toppingStyle = pizza.toppings.reduce(
+    (style, row, i) => style += row.reduce(
+      (s, ingredient, j) => s += ingredient === ToppingsEnum.tomato
+        ? tomatoStyle(i * row.length + j, i, i * row.length)
+        : mushroomStyle(i * row.length + j, i, i * row.length),
+      ''
+    ),
+    ''
+  );
+
+  return body(pizza.rows, pizza.columns, toppingMarkup, toppingStyle);
 }

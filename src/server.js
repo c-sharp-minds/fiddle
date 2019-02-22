@@ -5,12 +5,16 @@
  */
 
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-import {findAllPizzas, parseAllPizzas, logPizzaInfo} from './pizza';
+import {findAllPizzas, parseAllPizzas, logPizzaInfo, generatePizzaHtml} from './pizza';
 
 const pizzaLocation = 'resources/pizza';
 const pizzaFiles = findAllPizzas(pizzaLocation);
-const pizzas = parseAllPizzas(pizzaFiles, pizzaLocation);
+// const pizzas = parseAllPizzas(pizzaFiles, pizzaLocation);
+const pizzas = parseAllPizzas([pizzaFiles[1]], pizzaLocation);
 
 pizzas.map((pizza, index) => {
   logPizzaInfo(pizza, index + 1);
+
+  const html = generatePizzaHtml(pizza, index + 1);
+  console.log('html: ', html);
 });
