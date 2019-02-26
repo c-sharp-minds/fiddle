@@ -1,4 +1,6 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const DelWebpackPlugin = require('del-webpack-plugin');
 
 module.exports = {
   target: 'web', // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
@@ -31,4 +33,16 @@ module.exports = {
   node: {
     fs: 'empty',
   },
+  plugins: [
+    new CopyPlugin([
+      {from: 'resources', to: 'resources'},
+      {from: 'src/index.html', to: 'index.html'},
+    ]),
+    new DelWebpackPlugin({
+      include: ['**.*'],
+      info: true,
+      keepGeneratedAssets: true,
+      allowExternal: false,
+    }),
+  ],
 };
