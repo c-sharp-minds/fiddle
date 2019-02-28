@@ -5,14 +5,14 @@
  */
 
 import './style.css';
-import pizza from './components/pizza/pizza';
+
 
 // Fiddle away
-const print = (input) => {
+/* const print = (input) => {
   const temp1 = document.getElementById('fiddle');
   temp1.innerHTML += input;
-};
+}; */
 
 /** Example snippet with load component */
 // print('<span class="title">Fiddle</span>');
-print(pizza);
+// print(pizza);
