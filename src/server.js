@@ -5,23 +5,15 @@
  */
 
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+import {findAllPizzas, parseAllPizzas, logPizzaInfo, generatePizzaHtml, writeFile} from './pizza';
 
-/** Using rxjs is possible */
-import {ajax} from 'rxjs/ajax';
-import {map, catchError} from 'rxjs/operators';
+const pizzaLocation = 'resources/pizza';
+const pizzaFiles = findAllPizzas(pizzaLocation);
+const pizzas = parseAllPizzas(pizzaFiles, pizzaLocation);
+// const pizzas = parseAllPizzas([pizzaFiles[0], pizzaFiles[1]], pizzaLocation);
 
-// It needs to be available globally, before RxJS is loaded
-// import {of, fromEvent} from 'rxjs';
-// import {map, filter, debounceTime, distinctUntilChanged} from 'rxjs/operators';
-
-const testApi = () => {
-  const obs$ = ajax.getJSON(`https://api.github.com/users?per_page=5`)
-    .pipe(
-      map((userResponse) => console.log('Users: ', userResponse)),
-      catchError((error) => console.log('error: ', error))
-    );
-
-  obs$.subscribe();
-};
-
-testApi();
+pizzas.map((pizza, index) => {
+  logPizzaInfo(pizza, index + 1);
+  const html = generatePizzaHtml(pizza, index + 1);
+  writeFile(html, `resources/visual/pizza${index + 1}.html`);
+});
