@@ -33,3 +33,12 @@ This file is used for running a web client.
 * Config: *webpack.server.config.js*
 
 This file is used for running with target node. The main reason for this is to open up the possibility to fiddle with stuff like [`fs`](https://nodejs.org/api/fs.html), which is not accessible in the browser.
+
+
+## Photos "Tips"
+
+* 2.5 billion people
+
+* not 1 right answer
+
+* improve solutions + explore different ideas
