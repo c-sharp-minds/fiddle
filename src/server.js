@@ -6,6 +6,8 @@
 
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 import {findAllPhotoCollections, parseAllPhotoCollections, mergeAllVerticalPhotos, sortAllPhotos} from './photo';
+import {Performance} from './shared';
+import {parseTags} from './tag/tag.methods';
 // import {parseTags} from './tag';
 
 const photosLocation = 'resources/photos';
@@ -31,27 +33,26 @@ console.log('photoCollections: ', photoCollections);
  *  * **Step 1**: Merge all vertical photos, that have the least possible matching tags
  */
 function executeAll() {
-  console.group('executeAll');
-  console.time('Total');
-  /* console.log('photos: ', photos); */
-  /* const result = photos.map((photoCollection) => {
-    const r = parseTags(photoCollection);
-    console.log('r: ', r);
-    r.sort((a, b) => b.photos.length - a.photos.length);
-    return r;
-  });
-  console.log('result: ', result); */
+  console.group('Execute all');
+  const perf = new Performance();
 
   photoCollections.map(
-    (collection, index) => {
+    (collection) => {
+      // Merge vertical photos
       const p = mergeAllVerticalPhotos(collection.photos);
       collection.photos = sortAllPhotos(p);
       collection.collectionSize = collection.photos.length;
+
+      // Parse tags
+      // const parsedTags = parseTags(collection.photos);
+      // collection.tags = parsedTags.sort((a, b) => b.photos.length - a.photos.length);
+      collection.tags = parseTags(collection.photos);
+
       console.log('collection: ', collection);
     });
 
+  perf.log(`Total execution time `);
   console.log('photoCollections: ', photoCollections);
-  console.timeEnd('Total');
   console.groupEnd();
 }
 

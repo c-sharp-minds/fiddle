@@ -20,5 +20,6 @@ export class PhotoCollection {
         const [orientation, M, ...tags] = row.split(' ');
         return new Photo(id, orientation, M, tags);
       });
+    this.tags = null;
   }
 }
