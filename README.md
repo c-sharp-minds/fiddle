@@ -16,6 +16,11 @@ $ yarn start
 # Do note that nodemon will stumble when importing css and using `document` etc. 
 # This is why we use a separate js file, so we can keep this logic separated.
 $ yarn watch
+
+# For cleaner logging and debugging in chrome:
+$ yarn debug
+# Then open Google Chrome > Type 'chrome://inspect' > Click on 'Open dedicated DevTools for Node'
+# !!! This command needs to be run in a separate terminal/command prompt if you wish to use livereload. yarn watch is still needed to build the main.js, which yarn debug uses to debug.
 ```
 
 ## Files
