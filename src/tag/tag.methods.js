@@ -57,29 +57,5 @@ export function parseTags(photos) {
   perf.end();
 
   return out;
-
-  /* return photos.reduce((tags, photo) => {
-    let updateTags = [...tags];
-
-    photo.tags.forEach((tag) => {
-      const findExistingTag = (ts, label) => ts.find((t) => !!t && t.name === label);
-      // First iteration
-      if (!updateTags || !updateTags.length) {
-        updateTags = [new Tag(tag, [photo.id])];
-      } else {
-        const existingTag = findExistingTag(updateTags, tag);
-        if (!!existingTag) {
-          const replaceTag = new Tag(existingTag.name, [...existingTag.photos, photo.id]);
-          updateTags = updateTags.filter((t) => t !== existingTag);
-          updateTags.push(replaceTag);
-        } else {
-          updateTags.push(new Tag(tag, [photo.id]));
-        }
-      }
-    },
-    []);
-
-    return [...updateTags];
-  },
-  []); */
 }
+

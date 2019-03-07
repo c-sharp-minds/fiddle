@@ -1,17 +1,17 @@
-import fs from 'fs';
 import {PhotoCollection} from './photo-collection';
 import {Photo, OrientationEnum} from './photo';
-import {countUnique, filterUnique, Performance} from '../shared';
+import {countUnique, filterUnique, Performance, readFile} from '../shared';
 
 /**
  * Read the file and splitit into readable rows
- * @param {string} file The location of the file we want to read
+ * @param {string} location The location of the file we want to read
+ * @param {string} file The name of the file we want to read
  * @return {PhotoCollection} PhotoCollection objects
  */
-export function parsePhotoCollection(file) {
-  if (!file) return;
+export function parsePhotoCollection(location, file) {
+  if (!location || !file) return;
 
-  const photoCollection = fs.readFileSync(file);
+  const photoCollection = readFile(`${location}/${file}`);
   const lines = photoCollection.toString().split('\n');
   if (!lines || !lines.length) return;
 
@@ -20,21 +20,8 @@ export function parsePhotoCollection(file) {
     .filter((line) => !!line) // Filter out \n at the end
     .slice(1, lines.length + 1);
 
-  return new PhotoCollection(size, photos);
+  return new PhotoCollection(size, photos, file);
 };
-
-
-/**
- * Check a specified directory for photos
- * @param {string} directory The directory location to check for photo files
- * @return {Array<string>} Array of photo files
- */
-export function findAllPhotoCollections(directory) {
-  if (!directory) return;
-
-  const photos = fs.readdirSync(directory);
-  return photos;
-}
 
 /**
  * Parse a series of photos for their content
@@ -45,7 +32,7 @@ export function findAllPhotoCollections(directory) {
 export function parseAllPhotoCollections(collections, location) {
   if (!collections || !collections.length) return;
 
-  return collections.map((photo) => parsePhotoCollection(`${location}/${photo}`));
+  return collections.map((photo) => parsePhotoCollection(location, photo));
 }
 
 /**
@@ -141,9 +128,20 @@ export function mergeAllVerticalPhotos(photos) {
   return photos;
 }
 
-const tagCount = (a, b) => {
+
+/**
+ * Callback function for sorting on `tagCount` property
+ * @export
+ * @param {any} a
+ * @param {any} b
+ * @return {number} Handle the sort index
+ * @example
+ * photos.sort(tagCount);
+ */
+export function tagCount(a, b) {
   return b.tagCount - a.tagCount;
-};
+}
+
 
 /**
  * Sort all the photos

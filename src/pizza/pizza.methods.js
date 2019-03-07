@@ -158,16 +158,3 @@ export function generatePizzaHtml(pizza, number) {
 
   return body(pizza.rows, pizza.columns, toppingMarkup, toppingStyle, number);
 }
-
-/**
- * Write content to a specified file location
- * @export
- * @param {string} content The content to write in the file
- * @param {string} location The location and name of the file
- */
-export function writeFile(content, location) {
-  if (!location) return;
-  /* The fs.createWriteStream() returns an (WritableStream {aka} internal.Writeable) and we want the encoding as 'utf'-8 */
-  /* The WriteableStream has the method write() */
-  fs.createWriteStream(location, 'utf-8').write(content);
-}
