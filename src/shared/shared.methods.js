@@ -1,6 +1,43 @@
 import fs from 'fs';
 
 /**
+   *
+   * @param {Array<any>} a First list to find matches in
+   * @param {Array<any>} b Second list to find matches in
+   * @return {number} Number of matches between the two lists
+   */
+export function countCommonItems(a, b) {
+  let count = 0;
+  for (let i = 0; i < a.length; ++i) {
+    const aItem = a[i];
+    for (let j = 0; j < b.length; ++j) {
+      const bItem = b[j];
+      if (aItem === bItem) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+/**
+   *
+   * @param {Array<any>} a List to get distinct count from
+   * @param {Array<any>} b Second list to find matches in
+   * @return {number} Number of matches between the two lists
+   */
+export function countDistinctItems(a, b) {
+  let count = 0;
+  for (let i = 0; i < a.length; ++i) {
+    const aItem = a[i];
+    if (!b.includes(aItem)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+/**
  * Count unique items
  * @param {Array<any>} iterable
  * @return {number} Number of unique items
