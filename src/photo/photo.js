@@ -18,6 +18,7 @@ export class Photo {
     this.tagCount = tagCount;
     this.tags = tags;
     this.resultId = resultId;
+    this.scores = [];
   }
 
   /**

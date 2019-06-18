@@ -10,11 +10,8 @@ export function countCommonItems(a, b) {
   let count = 0;
   for (let i = 0; i < a.length; ++i) {
     const aItem = a[i];
-    for (let j = 0; j < b.length; ++j) {
-      const bItem = b[j];
-      if (aItem === bItem) {
-        count++;
-      }
+    if (b.includes(aItem)) {
+      count++;
     }
   }
   return count;

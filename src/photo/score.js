@@ -33,9 +33,9 @@ export class Score {
   constructor(a, b) {
     this.current = a.id;
     this.next = b.id;
-    this.common = countCommonItems(a.tags, b.tags);
-    this.left = countDistinctItems(a.tags, b.tags);
-    this.right = countDistinctItems(b.tags, a.tags);
+    this.common = countCommonItems(a.tags, b.tags, 5);
+    this.left = countDistinctItems(a.tags, b.tags, 5);
+    this.right = countDistinctItems(b.tags, a.tags, 5);
   }
 
   /**
